@@ -61,7 +61,7 @@ def create_tasks(title:str = Form(...)):
     db.commit()
     db.close()
 
-    return RedirectResponse("/tasks", status_code=303)
+    return RedirectResponse(url="/tasks", status_code=303)
 
 
 
@@ -99,7 +99,7 @@ def delete_task(id:int):
     
     db.close()
 
-    return RedirectResponse("/tasks", status_code=303)
+    return RedirectResponse(url="/tasks", status_code=303)
 
 
 
@@ -117,7 +117,7 @@ def complate_task(id:int):
     
    db.close()
 
-   return RedirectResponse("/tasks", status_code=303)
+   return RedirectResponse(url="/tasks", status_code=303)
 
 
 
@@ -142,7 +142,9 @@ def Edit_task(id:int, request:Request):
 
 @app.post("/update/{id}")
 def update_task(id:int,
+                request:Request,
                 title:str = Form(...)
+                
                 
 ):
    db = SessionLocal()
@@ -155,4 +157,4 @@ def update_task(id:int,
 
    db.close()
 
-   return RedirectResponse("/tasks", status_code=303)
+   return RedirectResponse(url="/tasks", status_code=303)
