@@ -1,14 +1,14 @@
-from sqlalchemy import create_engine # اتصال معل قاعدة البيانات
-from sqlalchemy.orm import sessionmaker, declarative_base # declarative_base → لإنشاء الكلاس الأساسي الذي سترث منه جميع الجداول.  , sessionmaker = جلسة تتعامل بها مع قاعدة البيانات
+from sqlalchemy import create_engine 
+from sqlalchemy.orm import sessionmaker, declarative_base
 
 
-DB_URL = "sqlite:///./todolist.db" # انشى قاعدة ببانات اسمها todolist.db
+DB_URL = "sqlite:///:memory:"
 
-engine = create_engine(DB_URL, #عنوان قاعدة البيانات
-                       connect_args={"check_same_thread":False}) # اسمح لعدة Requests باستعمال SQLite
+engine = create_engine(DB_URL, 
+                       connect_args={"check_same_thread":False})
 
-SessionLocal = sessionmaker(bind=engine,# اربط Session بقاعدة البيانات
-                             autoflush=False,# لا ترسل البيانات تلقائياً
-                               autocommit=False)# لا تحفظ البيانات تلقائياً، انتظر db.commit()
+SessionLocal = sessionmaker(bind=engine,
+                             autoflush=False,
+                               autocommit=False)
 
-Base = declarative_base() #  جميع الجداول عليها الوراث من bASE
+Base = declarative_base() 
