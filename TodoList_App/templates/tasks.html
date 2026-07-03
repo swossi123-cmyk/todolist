@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Tasks</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body class="tasks-page">
+
+<div class="tasks-box">
+
+    <h1>📝 My Tasks</h1>
+
+    <form action="/tasks" method="POST">
+
+        <input
+            type="text"
+            name="title"
+            placeholder="Enter new task..."
+            required>
+
+        <button type="submit">
+            Add Task
+        </button>
+
+    </form>
+
+    <hr>
+
+    <table>
+
+        <thead>
+
+        <tr>
+
+            <th>ID</th>
+
+            <th>Task</th>
+
+            <th>Status</th>
+
+            <th>Action</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for task in tasks %}
+
+        <tr>
+
+            <td>{{ task.id }}</td>
+
+            <td>{{ task.title }}</td>
+
+            <td>
+
+                {% if task.done %}
+
+                    ✅ Completed
+
+                {% else %}
+
+                    ⏳ Pending
+
+                {% endif %}
+
+            </td>
+
+            <td>
+
+                <a href="/complete/{{ task.id }}">
+        <button>Complete</button>
+    </a>
+
+    <a href="/delete/{{ task.id }}">
+        <button>Delete</button>
+    </a>
+
+    <a href="/edit/{{ task.id }}">
+        <button>Edit</button>
+    </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+
+</html>
