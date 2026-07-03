@@ -46,7 +46,8 @@ def home(request:Request): # function
 # Add tasks
 @app.post("/tasks")
 
-def create_tasks(title:str = Form(...)):
+def create_tasks(request:Request,
+    title:str = Form(...)):
 
     db = SessionLocal()
 
